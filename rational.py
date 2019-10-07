@@ -6,6 +6,13 @@ class Q(object):
     def __repr__(self):
         if self.b == 1:
             return str(self.a)
+        
+        if self.b % self.a == 0:
+               c = self.b // self.a
+               a = self.a // c
+               b = self.b // c 
+               return str(a//b)
+
         return f'{self.a}/{self.b}'
 
 
