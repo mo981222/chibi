@@ -8,6 +8,7 @@ class Q(object):
             return str(self.a)
         return f'{self.a}/{self.b}'
 
+
     def add(self,q):
         a = self.a
         b = self.b
