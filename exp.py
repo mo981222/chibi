@@ -64,3 +64,18 @@ e = Sub(Val(1),Sub(Val(2),Val(3)))
 assert e.eval() == 2
 
 
+class Div(Expr):
+    __slots__=['left','right']
+    def __init__(self, a,b):
+        self.left = a
+        self.right = b
+    def eval(self):
+        return self.left.eval() // self.right.eval()
+
+e = Div(Val(7),Val(2))
+assert e.eval() == 3
+
+e = Div(Val(7),Div(Val(6),Val(3)))
+assert e.eval() == 3
+
+
