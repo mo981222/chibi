@@ -18,6 +18,7 @@ assert isinstance(v, Expr)
 assert isinstance(v, Val)
 assert not isinstance(v, int)
 
+
 class Add(Expr):
     __slots__=['left','right']
     def __init__(self, a,b):
@@ -78,4 +79,5 @@ assert e.eval() == 3
 e = Div(Val(7),Div(Val(6),Val(3)))
 assert e.eval() == 3
 
-
+assert isinstance(Val(1), Expr)
+assert isinstance(Div(Val(7), Val(2)), Expr)
