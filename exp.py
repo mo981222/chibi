@@ -75,8 +75,6 @@ assert e.eval() == -1
 e = Sub(Val(1),Sub(Val(2),Val(3)))
 assert e.eval() == 2
 
-e = Sub(Sub(Val(1),(Val(2)),Val(3))
-assert e.eval() == -4
 
 class Div(Expr):
     __slots__=['left','right']
