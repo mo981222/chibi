@@ -84,13 +84,6 @@ print(e.eval(env))
 e = Assign('x', Add(Var('x'),Val(2)))
 print(e.eval(env))
 
-try:
-    e = Var('x')
-    print(e.eval({}))
-except NameEroor:
-    print('未定義の変数です')
-
-
 e = Var('x')
 print(e.eval({'x': 123}))
 
@@ -110,25 +103,30 @@ def conv(tree):
         return Div(conv(tree[0]), conv(tree[1]))
     if tree == 'Mod':
         return Mod(conv(tree[0]), conv(tree[1]))
-    print('@TODO', tree.tag)
+    if tree == 'Var':
+        return Var(str(tree))
+    if tree == 'LetDecl':
+        return Assign(str(tree[0]),conv(tree[1]))
+    print('@TODO', tree.tag, repr(tree))
     return Val(str(tree))
 
-def run(src: str):
+def run(src: str,env :dict):
     tree = parser(src)
     if tree.isError():
         print(repr(tree))
     else:
         e = conv(tree)
-        print(repr(e))
-        print(e.eval({}))
+        print('env', env)
+        print(e.eval(env))
 
 def main():
     try:
+        env = {}
         while True:
             s = input('>>> ')
             if s == '':
                 break
-            run(s)
+            run(s, env)
     except EOFError:
         return
 
