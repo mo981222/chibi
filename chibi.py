@@ -139,6 +139,13 @@ class If(Expr):
         else:
             return self.else_.eval(env)
 
+e = Block(
+    Assign('x', Val(1)),
+    Assign('y', Val(2)),
+    If(Gt(Var('x'),Var('y')),Var('x'),Var('y'))
+)
+assert e.eval == 2
+
 def conv(tree):
     if tree == 'Block':
         return conv(tree[0])
