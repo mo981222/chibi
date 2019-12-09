@@ -134,6 +134,16 @@ def conv(tree):
         return Div(conv(tree[0]), conv(tree[1]))
     if tree == 'Mod':
         return Mod(conv(tree[0]), conv(tree[1]))
+    if tree == 'Lt':
+        return Lt(conv(tree[0]), conv(tree[1]))
+    if tree == 'Gt':
+        return Lt(conv(tree[0]), conv(tree[1]))
+    if tree == 'Lte':
+        return Lt(conv(tree[0]), conv(tree[1]))
+    if tree == 'Gte':
+        return Lt(conv(tree[0]), conv(tree[1]))
+    if tree == 'Ne':
+        return Lt(conv(tree[0]), conv(tree[1]))
     if tree == 'Var':
         return Var(str(tree))
     if tree == 'LetDecl':
